@@ -1,0 +1,1 @@
+var billAmount= document.querySelector("bill-amount")
