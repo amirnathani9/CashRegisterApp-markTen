@@ -7,7 +7,6 @@ var nextButton = document.querySelector("#next-button");
 var cashDisplay = document.querySelector(".cash-display")
 var tableDisplay= document.querySelector("#table-display")
 const availableNotes = [2000, 500, 100, 50, 10, 5, 1];
-
 cashDisplay.style.display="none";
 tableDisplay.style.display="none";
 
