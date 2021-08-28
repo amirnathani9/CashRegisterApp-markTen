@@ -1,28 +1,42 @@
 var billAmount = document.querySelector("#bill-amount");
 var cashGiven = document.querySelector("#cash-given");
 var checkButton = document.querySelector("#check-button");
-var noOFNotes = document.querySelectorAll(".no-of-notes");
-var message = document.querySelector("#error-message");
-
+var noOfNotes = document.querySelectorAll(".no-of-notes");
+const message = document.querySelector("#error-message");
+var nextButton = document.querySelector("#next-button");
+var cashDisplay = document.querySelector(".cash-display")
+var tableDisplay= document.querySelector("#table-display")
 const availableNotes = [2000, 500, 100, 50, 10, 5, 1];
 
-checkButton.addEventListener("click",function validateBillAndCashAmount() {
+cashDisplay.style.display="none";
+tableDisplay.style.display="none";
+
+nextButton.addEventListener("click", function validateBillAmount() {
     hideMessage();
     if(billAmount.value > 0){
-        if(cashGiven.value >= billAmount.value){
-            var amountToBeReturned = cashGiven.value - billAmount.value;
-            calculateReturnChange(amountToBeReturned);
-
-        }
-        else {
-            showMessage("Do you wanna wash plated!!");
-        }
-
+        nextButton.style.display = "none";
+        cashDisplay.style.display = "block";
+        
     }
     else {
-        showMessage("Invalid Amount");
+        showMessage("Invalid Number");
     }
 });
+
+
+checkButton.addEventListener("click", function validateBillAndCashAmount() {
+    hideMessage();
+    if(Number(cashGiven.value) >= Number(billAmount.value)) {
+        const amountToBeReturned = cashGiven.value - billAmount.value;
+        calculateReturnChange(amountToBeReturned);
+    }
+    else {
+        showMessage("Do you wanna wash plates?");
+    }
+
+});
+
+
 function calculateReturnChange(amountToBeReturned){
     for(let i=0; i<availableNotes.length; i++){
 
@@ -30,15 +44,20 @@ function calculateReturnChange(amountToBeReturned){
 
         amountToBeReturned = amountToBeReturned % availableNotes[i];
 
-        noOFNotes[i].innerText = numOfNotes;
+        noOfNotes[i].innerText = numOfNotes;
+        
     }
+    tableDisplay.style.display = "block";
 }
 
-function showMessage(msg){
+function hideMessage() {
+    message.style.display = "none";
+  }
+  
+  function showMessage(msg) {
     message.style.display = "block";
-    msg.innerText = msg;
-}
+    message.innerText = msg;
+  }
+  
 
-function hideMessage(){
-    message.style.display = "none"
-}
+
