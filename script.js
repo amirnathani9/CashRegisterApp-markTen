@@ -25,12 +25,15 @@ nextButton.addEventListener("click", function validateBillAmount() {
 
 checkButton.addEventListener("click", function validateBillAndCashAmount() {
     hideMessage();
-    if(Number(cashGiven.value) >= Number(billAmount.value)) {
+    if(Number(cashGiven.value) <0 || Number(billAmount.value) <0){
+        showMessage("Invalid Number")
+    }
+    else if(Number(cashGiven.value) >= Number(billAmount.value)) {
         const amountToBeReturned = cashGiven.value - billAmount.value;
         calculateReturnChange(amountToBeReturned);
     }
     else {
-        showMessage("Do you wanna wash plates?");
+        showMessage("Cash input should be greater than bill amount");
     }
 
 });
