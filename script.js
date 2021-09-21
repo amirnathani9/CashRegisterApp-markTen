@@ -30,7 +30,9 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
     }
     else if(Number(cashGiven.value) >= Number(billAmount.value)) {
         const amountToBeReturned = cashGiven.value - billAmount.value;
+        showMessage("Return Amount: " + amountToBeReturned);
         calculateReturnChange(amountToBeReturned);
+        
     }
     else {
         showMessage("Cash input should be greater than bill amount");
